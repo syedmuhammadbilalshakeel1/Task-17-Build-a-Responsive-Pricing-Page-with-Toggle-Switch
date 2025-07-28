@@ -20,7 +20,7 @@ body {
 .container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0 15px;
 }
 
 /* Header Styles */
@@ -78,8 +78,8 @@ body {
 .toggle-switch {
   position: relative;
   display: inline-block;
-  width: 60px;
-  height: 30px;
+  width: 80px;
+  height: 40px;
 }
 
 .toggle-input {
@@ -96,22 +96,22 @@ body {
   right: 0;
   bottom: 0;
   background: rgba(255, 255, 255, 0.2);
-  border-radius: 30px;
-  transition: all 0.3s ease;
+  border-radius: 40px;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   border: 2px solid rgba(255, 255, 255, 0.3);
 }
 
 .toggle-slider {
   position: absolute;
   content: "";
-  height: 22px;
-  width: 22px;
+  height: 32px;
+  width: 32px;
   left: 2px;
   bottom: 2px;
   background: white;
   border-radius: 50%;
-  transition: all 0.3s ease;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .toggle-input:checked + .toggle-label {
@@ -120,29 +120,29 @@ body {
 }
 
 .toggle-input:checked + .toggle-label .toggle-slider {
-  transform: translateX(30px);
+  transform: translateX(40px);
   background: #667eea;
 }
 
 .discount-badge {
   position: absolute;
-  top: -40px;
-  right: -30px;
+  top: -45px;
+  right: -35px;
   background: linear-gradient(45deg, #ff6b6b, #ee5a24);
   color: white;
-  padding: 8px 16px;
-  border-radius: 20px;
-  font-size: 0.85rem;
-  font-weight: 600;
-  box-shadow: 0 4px 12px rgba(238, 90, 36, 0.3);
+  padding: 10px 18px;
+  border-radius: 25px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  box-shadow: 0 6px 20px rgba(238, 90, 36, 0.4);
   opacity: 0;
-  transform: translateY(-10px);
-  transition: all 0.3s ease;
+  transform: translateY(-15px) scale(0.8);
+  transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
 
 .discount-badge.show {
   opacity: 1;
-  transform: translateY(0);
+  transform: translateY(0) scale(1);
 }
 
 /* Pricing Grid */
@@ -200,19 +200,28 @@ body {
 }
 
 .pricing-card.popular {
-  border: 2px solid #667eea;
-  transform: scale(1.05);
-  box-shadow: 0 15px 50px rgba(102, 126, 234, 0.2);
+  border: 3px solid #667eea;
+  transform: scale(1.08);
+  box-shadow: 0 20px 60px rgba(102, 126, 234, 0.25);
+  background: linear-gradient(135deg, #ffffff 0%, #f8f9ff 100%);
+  position: relative;
 }
 
-.pricing-card.popular::before {
-  opacity: 1;
+.pricing-card.popular::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(118, 75, 162, 0.05) 100%);
+  pointer-events: none;
 }
 
 .popular-badge {
   position: absolute;
   top: -1px;
-  left: 49%;
+  left: 50%;
   transform: translateX(-50%);
   background: linear-gradient(45deg, #667eea, #764ba2);
   color: white;
@@ -241,28 +250,39 @@ body {
   display: flex;
   align-items: baseline;
   justify-content: center;
-  gap: 5px;
-  margin-bottom: 10px;
+  gap: 2px;
+  margin-bottom: 15px;
+  position: relative;
 }
 
 .currency {
-  font-size: 1.5rem;
+  font-size: 1.8rem;
   font-weight: 600;
   color: #667eea;
+  align-self: flex-start;
+  margin-top: 8px;
 }
 
 .price {
-  font-size: 3.5rem;
-  font-weight: 700;
+  font-size: 4rem;
+  font-weight: 800;
   color: #333;
-  transition: all 0.3s ease;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  line-height: 0.9;
+  letter-spacing: -2px;
 }
 
 .period {
-  font-size: 1rem;
+  font-size: 1.1rem;
   color: #666;
   font-weight: 500;
-  transition: all 0.3s ease;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  align-self: flex-end;
+  margin-bottom: 8px;
+}
+
+.popular .price {
+  color: #667eea;
 }
 
 .plan-description {
@@ -300,7 +320,7 @@ body {
 /* Select Button */
 .select-btn {
   width: 100%;
-  padding: 15px 30px;
+  padding: 16px 32px;
   background: linear-gradient(45deg, #667eea, #764ba2);
   color: white;
   border: none;
@@ -308,22 +328,35 @@ body {
   font-size: 1.1rem;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.select-btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.select-btn:hover::before {
+  left: 100%;
 }
 
 .select-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 30px rgba(102, 126, 234, 0.4);
 }
 
 .select-btn:active {
-  transform: translateY(0);
-}
-
-.popular .select-btn {
-  background: linear-gradient(45deg, #764ba2, #667eea);
-  box-shadow: 0 6px 20px rgba(118, 75, 162, 0.4);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.3);
 }
 
 /* Scroll to Top Button */
@@ -502,6 +535,20 @@ body {
 
   .header-subtitle {
     font-size: 1.1rem;
+  }
+
+  .container {
+    padding: 0 10px;
+  }
+
+  .pricing-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 0 5px;
+  }
+
+  .pricing-card {
+    margin: 0 5px;
   }
 
   .pricing-grid {
